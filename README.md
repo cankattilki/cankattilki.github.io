@@ -20,11 +20,12 @@ If you are not familiar with JSON, use this quick guide:
 
 ## Quick Start
 
-1. Update `site-data.json`.
-2. Run locally:
+1. Fork this repo.
+2. Update `site-data.json` either from GitHub directly or in your local.
+3. If you work on local, run your website locally by running this in your command line:
    - `python -m http.server 8000`
    - open `http://localhost:8000`
-3. Push to GitHub (`master` branch in this repo).
+4. Commit and Push to GitHub (`master` branch in this repo).
 
 ## What You Can Edit in `site-data.json`
 
