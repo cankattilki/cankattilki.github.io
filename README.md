@@ -5,7 +5,7 @@ This site is designed to be personalized by editing **one file**: `site-data.jso
 
 In most cases, you do **not** need to edit `index.html`.
 
-## JSON Basics (Very Important)
+## JSON Basics
 
 If you are not familiar with JSON, use this quick guide:
 
