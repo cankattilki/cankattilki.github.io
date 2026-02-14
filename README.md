@@ -66,7 +66,7 @@ Notes:
   Not correct:
   - `"research_interests": "Model Reduction, Data Driven Modeling"`
 
-## Publications and BibTeX (User-Friendly)
+## Publications and BibTeX
 
 For **journal articles** and **preprints**, you can paste BibTeX directly.
 The page can auto-read common fields (title, authors, venue/status, year).
@@ -80,7 +80,7 @@ The page can auto-read common fields (title, authors, venue/status, year).
 3. Paste BibTeX into `bibtex`.
    - Recommended format: array of lines, for example:
      - `"bibtex": ["@article{...}", "  title={...}", "...", "}"]`
-   - You can also use one long string, but line-array format is easier to edit.
+   - You can also use one long string seperated by `\n`.
 4. Add button links in `links` (`PDF`, `DOI`, `arXiv`, etc.).
 
 ### Journal Article Template
