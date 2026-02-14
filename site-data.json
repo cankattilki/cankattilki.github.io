@@ -1,0 +1,206 @@
+{
+  "theme": {
+    "primary_color": "#222433",
+    "secondary_color": "#7A2746",
+    "text_color": "#222433",
+    "background_color": "#F7F2EC",
+    "accent_color": "#666074"
+  },
+  "social_links": {
+    "orcid": "https://orcid.org/0009-0001-8667-3075",
+    "scholar": "https://scholar.google.com/citations?hl=en&user=-VGlnVcAAAAJ",
+    "github": "https://github.com/cankattilki"
+  },
+  "profile": {
+    "image": "./Cankat1c.jpeg",
+    "name": "Cankat Tilki",
+    "title": "PhD Student in Mathematics",
+    "university": "Virginia Tech",
+    "department": "Department of Mathematics, Virginia Tech",
+    "email": "cankat@vt.edu",
+    "office": "Data & Decision Sciences 330",
+    "research_interests": [
+      "Model Reduction",
+      "Data Driven Modeling"
+    ],
+    "bio": "I am Cankat Tilki, a PhD student in the Department of Mathematics at Virginia Tech. I work with Dr. Serkan Gugercin on data-driven modeling of dynamical systems. Outside research, I enjoy practicing aikido and traveling.",
+    "research_summary": "My research focuses on data-driven modeling and model reduction for dynamical systems. I am particularly interested in EDMD from a Koopman-operator perspective, with the goal of constructing lower-dimensional representations that capture the essential behavior of complex systems. My current work explores both theoretical and computational aspects of these approaches, with an emphasis on methods that are reliable, interpretable, and broadly applicable."
+  },
+  "site": {
+    "footer_year": 2026
+  },
+  "publications": {
+    "journal_articles": [
+      {
+        "title": "Localisation of Regularised and Multiview Support Vector Machine Learning",
+        "authors": "Aurelian Gheondea and Cankat Tilki",
+        "venue": "Journal of Machine Learning Research, Vol. 25, No. 368, pp. 1-47, 2024",
+        "bibtex": [
+          "@article{gheondea2024localisation,",
+          "  title={Localisation of Regularised and Multiview Support Vector Machine Learning},",
+          "  author={Gheondea, Aurelian and Tilki, Cankat},",
+          "  journal={Journal of Machine Learning Research},",
+          "  volume={25},",
+          "  number={368},",
+          "  pages={1--47},",
+          "  year={2024}",
+          "}"
+        ],
+        "links": [
+          {
+            "label": "JMLR Page",
+            "url": "http://jmlr.org/papers/v25/23-0522.html"
+          },
+          {
+            "label": "PDF",
+            "url": "https://jmlr.org/papers/volume25/23-0522/23-0522.pdf"
+          },
+          {
+            "label": "arXiv",
+            "url": "https://arxiv.org/abs/2304.05655"
+          }
+        ]
+      }
+    ],
+    "preprints": [
+      {
+        "title": "Local-Global Compatibility in the Langlands Program",
+        "authors": "with R. Taylor",
+        "status": "Submitted to Duke Mathematical Journal, 2024",
+        "bibtex": [
+          "@unpublished{tilki2024localglobal,",
+          "  title={Local-Global Compatibility in the Langlands Program},",
+          "  author={Tilki, Cankat and Taylor, R.},",
+          "  note={Submitted to Duke Mathematical Journal},",
+          "  year={2024}",
+          "}"
+        ],
+        "links": [
+          {
+            "label": "arXiv:2401.12345",
+            "url": "#"
+          }
+        ]
+      }
+    ]
+  },
+  "conferences": {
+    "presentations": [
+      {
+        "date": "March 2025",
+        "title": "SIAM Conference on Computational Science and Engineering",
+        "type": "Oral presentation",
+        "talk": "Koopman Theory and Wavelets: A Framework for Wavelet-based Dynamic Mode Decomposition"
+      },
+      {
+        "date": "September 2024",
+        "title": "Model Reduction and Surrogate Modeling",
+        "type": "Poster presentation",
+        "talk": "Wavelet-based DMD in the Context of Extended DMD and Koopman Theory"
+      },
+      {
+        "date": "May 2023",
+        "title": "Nonlinear Model Reduction for Control Conference",
+        "type": "Oral presentation",
+        "talk": "Wavelet-based DMD in the Context of Extended DMD"
+      },
+      {
+        "date": "September 2021",
+        "title": "Working Conference on Software Visualization",
+        "type": "Oral presentation",
+        "talk": "Augmenting Code Review Experience Through Visualization"
+      }
+    ],
+    "seminar_talks": [
+      {
+        "date": "Summer 2025",
+        "title": "Seminar on Control Theory Numerics and PDE's",
+        "location": "TU Berlin"
+      },
+      {
+        "date": "Fall 2025",
+        "title": "Applied Numerical Analysis Seminar",
+        "location": "Virginia Tech"
+      },
+      {
+        "date": "Spring 2025",
+        "title": "Applied Numerical Analysis Seminar",
+        "location": "Virginia Tech"
+      },
+      {
+        "date": "Spring 2024",
+        "title": "Applied Numerical Analysis Seminar",
+        "location": "Virginia Tech"
+      }
+    ],
+    "organizational_roles": [
+      {
+        "date": "September 2025",
+        "title": "Local Organizing Committee, Young Mathematics in Model Order Reduction 2026 (YMMOR 2026)",
+        "location": "Blacksburg, VA, United States",
+        "details": "Co-organizers: Michael S. Ackermann (Virginia Tech), Sam Bender (Virginia Tech), Jordan Jackson (Virginia Tech), Reetish Padhi (Virginia Tech), Sean Reiter (NYU Courant)"
+      },
+      {
+        "date": "August 2025",
+        "title": "Treasurer of the SIAM Student Chapter at Virginia Tech",
+        "location": "Virginia Tech",
+        "details": "President: Sam K. Bender, Vice President: Michael S. Ackermann"
+      }
+    ]
+  },
+  "cv": {
+    "education": [
+      {
+        "degree": "PhD in Mathematics (Computational Modeling and Data Analytics)",
+        "institution": "Virginia Tech, Blacksburg, VA",
+        "gpa": "3.92",
+        "period": "Aug 2024 - Expected May 2028"
+      },
+      {
+        "degree": "MS in Mathematics (Computational Modeling and Data Analytics)",
+        "institution": "Virginia Tech, Blacksburg, VA",
+        "gpa": "3.92",
+        "period": "Aug 2022 - Jun 2024"
+      },
+      {
+        "degree": "Bachelor of Science in Mathematics",
+        "institution": "Ihsan Dogramaci Bilkent University, Ankara, Turkey",
+        "gpa": "3.64",
+        "period": "Sep 2018 - May 2022"
+      },
+      {
+        "degree": "Bachelor of Science in Computer Engineering",
+        "institution": "Ihsan Dogramaci Bilkent University, Ankara, Turkey",
+        "gpa": "3.61",
+        "period": "Sep 2017 - May 2022"
+      }
+    ],
+    "awards": [
+      {
+        "title": "Virginia Tech Graduate Merit Fellowship",
+        "organization": "Virginia Tech Mathematics Department",
+        "period": "Aug 2022 - Jun 2024"
+      },
+      {
+        "title": "High Honor Standing for Computer Engineering",
+        "organization": "Bilkent University",
+        "period": "May 2022"
+      },
+      {
+        "title": "High Honor Standing for Mathematics",
+        "organization": "Bilkent University",
+        "period": "May 2022"
+      },
+      {
+        "title": "TUBITAK 2205 Scholarship",
+        "organization": "Governmental merit-based grant",
+        "period": "Sep 2018 - May 2022"
+      },
+      {
+        "title": "Bilkent University Comprehensive Scholarship",
+        "organization": "Merit-based grant",
+        "period": "Sep 2017 - May 2022"
+      }
+    ]
+  }
+}

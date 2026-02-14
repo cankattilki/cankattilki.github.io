@@ -1,0 +1,1409 @@
+﻿<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Source+Sans+3:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'serif': ['Crimson Pro', 'Georgia', 'serif'],
+            'sans': ['Source Sans 3', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --theme-primary: #222433;
+      --theme-secondary: #7A2746;
+      --theme-text: #222433;
+      --theme-bg: #F7F2EC;
+      --theme-accent: #666074;
+      --theme-border: #CDB8BF;
+      --theme-soft-bg: #F2E6D6;
+    }
+    html, body { height: 100%; margin: 0; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .nav-link {
+      position: relative;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      width: 100%;
+      height: 3px;
+      border-radius: 9999px;
+      background: currentColor;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      opacity: 0.9;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
+    .publication-item {
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .publication-item:hover {
+      border-left-color: var(--theme-secondary);
+      background: color-mix(in srgb, var(--theme-secondary) 8%, white);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -21px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--theme-secondary);
+      border: 2px solid var(--theme-primary);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .custom-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+    .custom-bullets li {
+      position: relative;
+      padding-left: 1rem;
+    }
+    .custom-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 0.38rem;
+      height: 0.38rem;
+      border-radius: 9999px;
+      background: #B88952;
+    }
+    .title-dot {
+      position: relative;
+      top: 0.08em;
+    }
+    .cv-title-icon {
+      position: relative;
+      top: 0.02em;
+    }
+    .view-cycle {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid #C8B7BF;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #4D2A38;
+      font-size: 0.76em;
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: 0.015em;
+      padding: 0.42rem 0.78rem;
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.08), 0 6px 16px rgba(34, 36, 51, 0.08);
+      cursor: pointer;
+      transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.12s ease;
+    }
+    .view-cycle:hover {
+      background: #FFFFFF;
+      border-color: #A88995;
+      color: #6D2340;
+      box-shadow: 0 2px 4px rgba(34, 36, 51, 0.1), 0 10px 20px rgba(34, 36, 51, 0.12);
+      transform: translateY(-1.5px);
+    }
+    .view-cycle:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(122, 39, 70, 0.28), 0 2px 4px rgba(34, 36, 51, 0.1), 0 10px 20px rgba(34, 36, 51, 0.12);
+    }
+    .view-cycle:active {
+      transform: translateY(-0.5px);
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.08), 0 4px 10px rgba(34, 36, 51, 0.1);
+    }
+    .view-icon {
+      display: inline-block;
+      min-width: 1.2em;
+      text-align: center;
+      margin-left: 0.15rem;
+    }
+    .view-icon-tight {
+      letter-spacing: -0.22em;
+    }
+    .view-cycle.is-changing .view-icon {
+      animation: viewIconShift 0.32s cubic-bezier(0.22, 0.8, 0.24, 1);
+    }
+    @keyframes viewIconShift {
+      0% { transform: translateX(-7px) translateY(2px) rotate(-14deg); opacity: 0; }
+      50% { transform: translateX(2px) translateY(-1px) rotate(6deg); opacity: 1; }
+      100% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+    }
+    .cv-print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.52rem 0.95rem;
+      border: 1px solid #C8B7BF;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #4D2A38;
+      font-weight: 650;
+      letter-spacing: 0.01em;
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.08), 0 6px 16px rgba(34, 36, 51, 0.08);
+      cursor: pointer;
+      transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.12s ease;
+    }
+    .cv-print-btn:hover {
+      background: #FFFFFF;
+      border-color: #A88995;
+      color: #6D2340;
+      box-shadow: 0 2px 4px rgba(34, 36, 51, 0.1), 0 10px 20px rgba(34, 36, 51, 0.12);
+      transform: translateY(-1.5px);
+    }
+    .cv-print-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(122, 39, 70, 0.28), 0 2px 4px rgba(34, 36, 51, 0.1), 0 10px 20px rgba(34, 36, 51, 0.12);
+    }
+    .cv-print-btn:active {
+      transform: translateY(-0.5px);
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.08), 0 4px 10px rgba(34, 36, 51, 0.1);
+    }
+    .content-partial {
+      position: relative;
+      max-height: var(--preview-max-height, 22rem);
+      overflow: hidden;
+    }
+    .content-partial::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3rem;
+      background: linear-gradient(to bottom, rgba(247, 242, 236, 0), rgba(247, 242, 236, 0.96));
+      pointer-events: none;
+    }
+    .content-partial:has(.bibtex-dropdown[open]) {
+      max-height: none;
+      overflow: visible;
+    }
+    .content-partial:has(.bibtex-dropdown[open])::after {
+      display: none;
+    }
+    .content-partial.bibtex-open {
+      max-height: none;
+      overflow: visible;
+    }
+    .content-partial.bibtex-open::after {
+      display: none;
+    }
+    .bibtex-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .bibtex-dropdown summary {
+      list-style: none;
+    }
+    .bibtex-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+    .bibtex-dropdown .bibtex-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      left: 0;
+      z-index: 20;
+      min-width: 18rem;
+      max-width: min(48rem, 90vw);
+      border: 1px solid #CDB8BF;
+      border-radius: 0.5rem;
+      background: #F2E6D6;
+      box-shadow: 0 8px 20px rgba(34, 36, 51, 0.14);
+    }
+    .bibtex-close {
+      position: absolute;
+      top: 0.35rem;
+      right: 0.35rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #C8B7BF;
+      border-radius: 0.4rem;
+      background: rgba(255, 255, 255, 0.92);
+      color: #5C1F35;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.12);
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+    }
+    .bibtex-close:hover {
+      background: #FFFFFF;
+      border-color: #7A2746;
+      box-shadow: 0 4px 10px rgba(34, 36, 51, 0.16);
+      transform: translateY(-1px);
+    }
+    .bibtex-close:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.12);
+    }
+    .bibtex-copy {
+      position: absolute;
+      right: 0.35rem;
+      bottom: 0.35rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #C8B7BF;
+      border-radius: 0.4rem;
+      background: rgba(255, 255, 255, 0.92);
+      color: #5C1F35;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.12);
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+    }
+    .bibtex-copy:hover {
+      background: #FFFFFF;
+      border-color: #7A2746;
+      box-shadow: 0 4px 10px rgba(34, 36, 51, 0.16);
+      transform: translateY(-1px);
+    }
+    .bibtex-copy:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(34, 36, 51, 0.12);
+    }
+    .bibtex-copy.copied {
+      border-color: #7A2746;
+      background: #F7F2EC;
+    }
+    .bibtex-copy-feedback {
+      position: absolute;
+      right: 2.45rem;
+      bottom: 0.46rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #FFFFFF;
+      background: #7A2746;
+      opacity: 0;
+      transform: translateY(2px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .bibtex-copy-feedback.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bibtex-dropdown[open] .bibtex-panel {
+      display: block;
+    }
+    @media print {
+      html, body {
+        height: auto !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+      }
+      .h-full {
+        height: auto !important;
+      }
+      .overflow-auto {
+        overflow: visible !important;
+      }
+      header,
+      footer,
+      nav {
+        display: none !important;
+      }
+      .page {
+        display: none !important;
+      }
+      #cv.page {
+        display: block !important;
+      }
+      #cv-print-toolbar {
+        display: none !important;
+      }
+      #cv ul {
+        list-style-type: disc !important;
+        padding-left: 1.25rem !important;
+      }
+      #cv ol {
+        list-style-type: decimal !important;
+        padding-left: 1.25rem !important;
+      }
+      #cv li {
+        display: list-item !important;
+      }
+      #cv ul.custom-bullets {
+        list-style: none !important;
+        padding-left: 0 !important;
+      }
+      #cv ul.custom-bullets li {
+        display: block !important;
+      }
+      .bg-white {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-sans" style="background-color: #F7F2EC; color: #222433;">
+  <div class="min-h-screen w-full overflow-auto flex flex-col"><!-- Header with Navigation Only -->
+   <header style="background: linear-gradient(to right, rgba(122, 39, 70, 0.98), rgba(92, 31, 53, 0.98));">
+    <nav class="w-full px-4 sm:px-6 lg:px-8">
+     <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <ul class="flex gap-4 sm:gap-8 lg:gap-12 text-sm sm:text-base lg:text-lg font-medium">
+       <li><a href="#home" class="nav-link active inline-block py-3 lg:py-4 whitespace-nowrap" style="color: #FFFFFF;" data-page="home">Home</a></li>
+       <li><a href="#publications" class="nav-link inline-block py-3 lg:py-4 whitespace-nowrap" style="color: #F4EBDD;" data-page="publications">Publications</a></li>
+       <li><a href="#conferences" class="nav-link inline-block py-3 lg:py-4 whitespace-nowrap" style="color: #F4EBDD;" data-page="conferences">Conferences</a></li>
+       <!-- RESTORE_TEACHING_NAV_START -->
+       <!-- <li><a href="#teaching" class="nav-link inline-block py-3 lg:py-4 whitespace-nowrap" style="color: #F4EBDD;" data-page="teaching">Teaching</a></li> -->
+       <!-- RESTORE_TEACHING_NAV_END -->
+       <li><a href="#cv" class="nav-link inline-block py-3 lg:py-4 whitespace-nowrap" style="color: #F4EBDD;" data-page="cv">CV</a></li>
+      </ul><!-- Right side decorative element -->
+      <div class="hidden sm:flex items-center gap-4 lg:gap-6">
+       <div class="w-px h-6 lg:h-8" style="background: rgba(244, 235, 221, 0.62);"></div>
+       <div class="flex gap-3 lg:gap-4"><a href="#" data-social="orcid" class="transition-opacity hover:opacity-75" style="color: #F4EBDD;" title="ORCID" target="_blank" rel="noopener noreferrer">
+         <svg class="w-5 h-5 lg:w-6 lg:h-6" viewbox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.209-.553-3.722-3.916-3.722h-2.403z" />
+         </svg></a> <a href="#" data-social="scholar" class="transition-opacity hover:opacity-75" style="color: #F4EBDD;" title="Google Scholar" target="_blank" rel="noopener noreferrer">
+         <svg class="w-5 h-5 lg:w-6 lg:h-6" viewbox="0 0 24 24" fill="currentColor">
+          <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" />
+         </svg></a> <a href="#" data-social="github" class="transition-opacity hover:opacity-75" style="color: #F4EBDD;" title="GitHub" target="_blank" rel="noopener noreferrer">
+         <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+         </svg></a>
+       </div>
+      </div>
+     </div>
+    </nav>
+   </header>
+   <main class="w-full flex-1"><!-- Home Page -->
+    <div id="home" class="page active fade-in">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10"><!-- Profile Section -->
+       <div class="md:col-span-1">
+        <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;"><!-- Profile Avatar -->
+         <div class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto rounded-full overflow-hidden shadow-lg border-2" style="border-color: #CDB8BF;">
+          <img id="profile-image" src="" alt="Profile portrait" class="w-full h-full object-cover">
+          <span id="avatar-initials" class="hidden"></span>
+         </div>
+         <div class="mt-4 sm:mt-6 lg:mt-8 text-center">
+          <h2 id="profile-name" class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold"></h2>
+          <p id="profile-title" class="text-xs sm:text-sm lg:text-base mt-1" style="color: #7A2746;"></p>
+         </div>
+         <div class="mt-4 sm:mt-6 lg:mt-8 space-y-2 sm:space-y-3 lg:space-y-4 text-xs sm:text-sm lg:text-base">
+          <div class="flex items-center gap-2 sm:gap-3 lg:gap-4" style="color: #666074;">
+           <svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+           </svg><span id="contact-department" class="break-words"></span>
+          </div>
+         <div class="flex items-center gap-2 sm:gap-3 lg:gap-4" style="color: #666074;">
+           <svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+           </svg><a id="contact-email" href="mailto:" class="hover:underline break-all" style="color: #666074;"></a>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3 lg:gap-4" style="color: #666074;">
+           <svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg><span id="contact-office" class="break-words"></span>
+          </div>
+         </div>
+         <div class="mt-4 sm:mt-6 lg:mt-8 pt-4 sm:pt-5 lg:pt-6 border-t" style="border-color: #CDB8BF;">
+          <h3 class="font-serif text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4" style="color: #222433;">Research Interests</h3>
+          <div id="research-interests-tags" class="flex flex-wrap gap-2"></div>
+         </div>
+        </div>
+       </div><!-- About Section -->
+       <div class="md:col-span-2 space-y-6 sm:space-y-8 lg:space-y-10">
+        <section>
+         <h2 class="font-serif text-xl sm:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><span class="w-6 sm:w-8 lg:w-10 h-1" style="background: #7A2746;"></span> <span class="truncate">About Me</span></h2>
+         <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <p id="about-bio" class="leading-relaxed text-sm sm:text-base lg:text-lg" style="color: #666074;"></p>
+         </div>
+        </section>
+        <section>
+         <h2 class="font-serif text-xl sm:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><span class="w-6 sm:w-8 lg:w-10 h-1" style="background: #7A2746;"></span> <span class="truncate">Research</span></h2>
+         <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <p id="research-summary-1" class="leading-relaxed text-sm sm:text-base lg:text-lg" style="color: #666074;"></p>
+         </div>
+        </section>
+       </div>
+      </div>
+     </div>
+    </div><!-- Publications Page -->
+    <div id="publications" class="page">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+      <div class="max-w-7xl mx-auto">
+       <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold mb-1 sm:mb-2 lg:mb-3">Publications</h2>
+       <p class="mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg" style="color: #666074;">Peer-reviewed articles and preprints</p>
+       <div class="space-y-6 lg:space-y-8"><!-- Published Papers -->
+        <section>
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg> Journal Articles
+          <button type="button" class="view-cycle" data-target="pub-journal-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="pub-journal-content" class="space-y-4 lg:space-y-5"></div>
+        </section><!-- Preprints -->
+        <section class="mt-8 sm:mt-10 lg:mt-12">
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+          </svg> Preprints
+          <button type="button" class="view-cycle" data-target="pub-preprints-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="pub-preprints-content" class="space-y-4 lg:space-y-5"></div>
+        </section>
+       </div>
+      </div>
+     </div>
+    </div><!-- Conferences Page -->
+    <div id="conferences" class="page">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+      <div class="max-w-7xl mx-auto">
+       <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold mb-1 sm:mb-2 lg:mb-3">Conferences &amp; Talks</h2>
+       <p class="mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg" style="color: #666074;">Conference and seminar contributions</p>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10"><!-- Conference Presentations -->
+        <section>
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg> Conference Presentations
+          <button type="button" class="view-cycle" data-target="conf-presentations-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="conf-presentations-content" class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <div id="conf-presentations-timeline" class="relative border-l-2 pl-4 sm:pl-6 lg:pl-8 space-y-4 sm:space-y-6 lg:space-y-8" style="border-color: #CDB8BF;"></div>
+         </div>
+        </section><!-- Seminars -->
+        <section>
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg> Seminar Talks
+          <button type="button" class="view-cycle" data-target="conf-seminars-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="conf-seminars-content" class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <div id="conf-seminars-timeline" class="relative border-l-2 pl-4 sm:pl-6 lg:pl-8 space-y-4 sm:space-y-6 lg:space-y-8" style="border-color: #CDB8BF;"></div>
+         </div>
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mt-6 mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-6 h-6 lg:w-7 lg:h-7 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6V5a2 2 0 012-2h0a2 2 0 012 2v1m-8 3h12a1 1 0 011 1v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7a1 1 0 011-1z" />
+          </svg> Organizational Role
+          <button type="button" class="view-cycle" data-target="conf-org-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="conf-org-content" class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <div id="conf-org-timeline" class="relative border-l-2 pl-4 sm:pl-6 lg:pl-8 space-y-4 sm:space-y-6 lg:space-y-8" style="border-color: #CDB8BF;"></div>
+         </div>
+        </section>
+       </div>
+      </div>
+     </div>
+    </div><!-- Teaching Page -->
+    <!-- RESTORE_TEACHING_PAGE_START
+    <div id="teaching" class="page">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+      <div class="max-w-7xl mx-auto">
+       <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold mb-1 sm:mb-2 lg:mb-3">Teaching</h2>
+       <p class="mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg" style="color: #666074;">Current and past teaching duties (mock data)</p>
+       <div class="space-y-6 sm:space-y-8 lg:space-y-10">
+        <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><span class="title-dot w-2 h-2 lg:w-3 lg:h-3 rounded-full flex-shrink-0" style="background: #7A2746;"></span> Courses Taught</h3>
+         <div class="space-y-3 sm:space-y-4 lg:space-y-5">
+          <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 border-b pb-3 sm:pb-4 lg:pb-5" style="border-color: #CDB8BF;">
+           <div class="flex-1">
+            <h4 class="font-medium text-sm sm:text-base lg:text-lg">MATH201: Linear Algebra II</h4>
+            <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Lead Instructor, Undergraduate Core</p>
+            <p class="text-xs lg:text-sm" style="color: #666074;">Designed weekly problem sheets, delivered 3 lectures/week, and supervised exam writing.</p>
+           </div><span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: #7A2746;">Fall 2025</span>
+          </div>
+          <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 border-b pb-3 sm:pb-4 lg:pb-5" style="border-color: #CDB8BF;">
+           <div class="flex-1">
+            <h4 class="font-medium text-sm sm:text-base lg:text-lg">MATH350: Intro to Number Theory</h4>
+            <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Teaching Assistant</p>
+            <p class="text-xs lg:text-sm" style="color: #666074;">Ran recitations for 40 students and held weekly office hours.</p>
+           </div><span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: #7A2746;">Spring 2025</span>
+          </div>
+          <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4">
+           <div class="flex-1">
+            <h4 class="font-medium text-sm sm:text-base lg:text-lg">MATH102: Calculus I</h4>
+            <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Lab Tutor</p>
+            <p class="text-xs lg:text-sm" style="color: #666074;">Supported first-year students with tutorials and formative assessments.</p>
+           </div><span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: #7A2746;">Fall 2024</span>
+          </div>
+         </div>
+        </section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+         <section>
+          <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+           <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" />
+           </svg> Mentoring &amp; Supervision</h3>
+          <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+           <div class="relative border-l-2 pl-4 sm:pl-6 lg:pl-8 space-y-4 sm:space-y-6 lg:space-y-8" style="border-color: #CDB8BF;">
+            <div class="timeline-item relative"><span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: #7A2746;">2025</span>
+             <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">Senior Thesis Supervision</h4>
+             <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Supervised 4 undergraduate thesis projects in algebra and geometry.</p>
+            </div>
+            <div class="timeline-item relative"><span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: #7A2746;">2024</span>
+             <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">Peer Mentoring Program</h4>
+             <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Mentored incoming graduate students on research communication.</p>
+            </div>
+           </div>
+          </div>
+         </section>
+         <section>
+          <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+           <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-4H5m14 8H5m14 4H5" />
+           </svg> Instructional Contributions</h3>
+          <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+           <div class="space-y-3 sm:space-y-4 lg:space-y-5">
+            <div class="p-3 sm:p-4 lg:p-5 rounded-lg" style="background-color: #F7F2EC;">
+             <p class="font-medium text-sm lg:text-base">Curriculum Redesign</p>
+             <p class="text-xs lg:text-sm" style="color: #666074;">Co-developed a flipped-classroom module for Calculus tutorials.</p>
+            </div>
+            <div class="p-3 sm:p-4 lg:p-5 rounded-lg" style="background-color: #F7F2EC;">
+             <p class="font-medium text-sm lg:text-base">Assessment Development</p>
+             <p class="text-xs lg:text-sm" style="color: #666074;">Built an automated weekly quiz bank with detailed feedback rubrics.</p>
+            </div>
+            <div class="p-3 sm:p-4 lg:p-5 rounded-lg" style="background-color: #F7F2EC;">
+             <p class="font-medium text-sm lg:text-base">Student Support</p>
+             <p class="text-xs lg:text-sm" style="color: #666074;">Organized revision workshops before finals with 90+ attendees.</p>
+            </div>
+           </div>
+          </div>
+         </section>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    RESTORE_TEACHING_PAGE_END -->
+    <!-- CV Page -->
+    <div id="cv" class="page">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
+      <div class="max-w-7xl mx-auto">
+       <div id="cv-print-toolbar" class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 lg:mb-10">
+        <div>
+         <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold mb-1 sm:mb-2">Curriculum Vitae</h2>
+         <p class="text-sm sm:text-base lg:text-lg" style="color: #666074;">Academic background and achievements</p>
+        </div><button onclick="window.print()" class="cv-print-btn text-xs sm:text-sm lg:text-base whitespace-nowrap">
+         <svg class="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+         </svg> Print CV </button>
+       </div>
+       <div class="space-y-6 sm:space-y-8 lg:space-y-10"><!-- Education -->
+        <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" /></svg> Education</h3>
+         <div id="cv-education-content" class="space-y-3 sm:space-y-4 lg:space-y-5"></div>
+        </section><!-- Awards & Honors -->
+        <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14a5 5 0 100-10 5 5 0 000 10zM9 13.5L7 21l5-2 5 2-2-7.5" /></svg> Awards &amp; Honors</h3>
+         <div id="cv-awards-content" class="space-y-2 sm:space-y-3 lg:space-y-4"></div>
+        </section><!-- Skills & Languages -->
+        <!-- CV_SKILLS_DEDICATIONS_START
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+         <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><span class="title-dot w-2 h-2 lg:w-3 lg:h-3 rounded-full flex-shrink-0" style="background: #7A2746;"></span> Technical Skills</h3>
+          <ul class="custom-bullets space-y-1 sm:space-y-2 lg:space-y-3">
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Wavelets, MRA, DMD, Koopman Theory</li>
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Machine Learning, SVM, Multiview Learning</li>
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Java, JavaScript, Python, LaTeX</li>
+          </ul>
+         </section>
+         <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: #CDB8BF;">
+          <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><span class="title-dot w-2 h-2 lg:w-3 lg:h-3 rounded-full flex-shrink-0" style="background: #7A2746;"></span> Other Academic Dedications</h3>
+          <ul class="custom-bullets space-y-1 sm:space-y-2 lg:space-y-3">
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">SIAM Student Chapter Member, Virginia Tech (Spring 2022 - Present)</li>
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Numerical Analysis Reading Group (Fall 2022 - Present)</li>
+           <li class="text-xs sm:text-sm lg:text-base" style="color: #666074;">Conducted Functional Analysis Reading Group (Spring 2022 - Fall 2023)</li>
+          </ul>
+         </section>
+        </div>
+        CV_SKILLS_DEDICATIONS_END -->
+       </div>
+      </div>
+     </div>
+    </div>
+   </main><!-- Footer -->
+   <footer style="background: linear-gradient(135deg, #7A2746 0%, #5C1F35 100%); color: #F7EEE3;">
+    <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-xs sm:text-sm lg:text-base text-center sm:text-left">&copy; <span id="footer-year"></span> <span id="footer-name"></span>. All rights reserved.</p>
+      <div class="flex gap-3 sm:gap-4 lg:gap-5"><a href="#" data-social="orcid" class="transition-opacity hover:opacity-80" style="color: #F4EBDD;" title="ORCID" target="_blank" rel="noopener noreferrer">
+        <svg class="w-5 h-5 lg:w-6 lg:h-6" viewbox="0 0 24 24" fill="currentColor">
+         <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.209-.553-3.722-3.916-3.722h-2.403z" />
+        </svg></a> <a href="#" data-social="scholar" class="transition-opacity hover:opacity-80" style="color: #F4EBDD;" title="Google Scholar" target="_blank" rel="noopener noreferrer">
+        <svg class="w-5 h-5 lg:w-6 lg:h-6" viewbox="0 0 24 24" fill="currentColor">
+         <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" />
+        </svg></a> <a href="#" data-social="github" class="transition-opacity hover:opacity-80" style="color: #F4EBDD;" title="GitHub" target="_blank" rel="noopener noreferrer">
+        <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="currentColor" viewbox="0 0 24 24">
+         <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+        </svg></a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      image: '',
+      name: '',
+      title: '',
+      university: '',
+      department: '',
+      office: '',
+      email: '',
+      footer_year: new Date().getFullYear(),
+      research_interests: '',
+      bio: '',
+      primary_color: '#222433',
+      secondary_color: '#7A2746',
+      text_color: '#222433',
+      background_color: '#F7F2EC',
+      accent_color: '#666074',
+      font_family: 'Crimson Pro',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    function refreshPreviewHeightsForVisiblePage() {
+      document.querySelectorAll('.view-cycle[data-state="partial"]').forEach(button => {
+        const targetId = button.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target || !target.classList.contains('content-partial')) return;
+        if (!target.closest('.page.active')) return;
+        setPreviewHeightForTarget(target);
+      });
+    }
+
+    // Navigation
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = link.getAttribute('data-page');
+        
+        // Update nav
+        document.querySelectorAll('.nav-link').forEach(l => {
+          l.classList.remove('active');
+          l.style.color = '#F4EBDD';
+        });
+        link.classList.add('active');
+        link.style.color = '#FFFFFF';
+        
+        // Update pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const page = document.getElementById(pageId);
+        page.classList.add('active');
+        page.classList.remove('fade-in');
+        void page.offsetWidth;
+        page.classList.add('fade-in');
+        refreshPreviewHeightsForVisiblePage();
+      });
+    });
+
+    function getInitials(name) {
+      return name.split(' ').map(n => n[0]).filter(c => c && c === c.toUpperCase()).slice(0, 2).join('');
+    }
+
+    function darkenHex(hex, factor = 0.2) {
+      if (!hex || typeof hex !== 'string') return hex;
+      const clean = hex.replace('#', '');
+      if (!/^[0-9a-fA-F]{6}$/.test(clean)) return hex;
+      const to = (i) => Math.max(0, Math.min(255, Math.round(parseInt(clean.slice(i, i + 2), 16) * (1 - factor))));
+      const r = to(0).toString(16).padStart(2, '0');
+      const g = to(2).toString(16).padStart(2, '0');
+      const b = to(4).toString(16).padStart(2, '0');
+      return `#${r}${g}${b}`;
+    }
+
+    function normalizeHex(hex) {
+      if (!hex || typeof hex !== 'string') return null;
+      const clean = hex.trim().replace('#', '');
+      if (/^[0-9a-fA-F]{6}$/.test(clean)) return `#${clean}`;
+      if (/^[0-9a-fA-F]{3}$/.test(clean)) {
+        return `#${clean.split('').map(ch => ch + ch).join('')}`;
+      }
+      return null;
+    }
+
+    function mixHex(hexA, hexB, weight = 0.5) {
+      const a = normalizeHex(hexA);
+      const b = normalizeHex(hexB);
+      if (!a || !b) return hexA || hexB || '';
+      const t = Math.max(0, Math.min(1, weight));
+      const pa = a.replace('#', '');
+      const pb = b.replace('#', '');
+      const to = (i) => {
+        const av = parseInt(pa.slice(i, i + 2), 16);
+        const bv = parseInt(pb.slice(i, i + 2), 16);
+        return Math.round(av * (1 - t) + bv * t).toString(16).padStart(2, '0');
+      };
+      return `#${to(0)}${to(2)}${to(4)}`;
+    }
+
+    function applyThemeStyles(cfg) {
+      const bg = cfg.background_color || defaultConfig.background_color;
+      const text = cfg.text_color || defaultConfig.text_color;
+      const secondary = cfg.secondary_color || defaultConfig.secondary_color;
+      const primary = cfg.primary_color || defaultConfig.primary_color;
+      const accent = cfg.accent_color || defaultConfig.accent_color;
+      const secondaryDark = darkenHex(secondary, 0.22) || secondary;
+      const softBg = mixHex(bg, secondary, 0.1);
+      const border = mixHex(bg, accent, 0.3);
+
+      const root = document.documentElement;
+      root.style.setProperty('--theme-primary', primary);
+      root.style.setProperty('--theme-secondary', secondary);
+      root.style.setProperty('--theme-text', text);
+      root.style.setProperty('--theme-bg', bg);
+      root.style.setProperty('--theme-accent', accent);
+      root.style.setProperty('--theme-border', border);
+      root.style.setProperty('--theme-soft-bg', softBg);
+
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = text;
+
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.background = `linear-gradient(to right, ${secondary}F9, ${secondaryDark}F9)`;
+      }
+
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.background = `linear-gradient(135deg, ${secondary} 0%, ${secondaryDark} 100%)`;
+      }
+
+      // Keep embedded inline colors in sync with JSON theme.
+      document.querySelectorAll('[style*="color: #666074"]').forEach(el => { el.style.color = accent; });
+      document.querySelectorAll('[style*="color: #7A2746"]').forEach(el => { el.style.color = secondary; });
+      document.querySelectorAll('[style*="color: #222433"]').forEach(el => { el.style.color = text; });
+      document.querySelectorAll('[style*="background-color: #F2E6D6"]').forEach(el => { el.style.backgroundColor = softBg; });
+      document.querySelectorAll('[style*="border-color: #CDB8BF"]').forEach(el => { el.style.borderColor = border; });
+    }
+
+    function applySocialLinks(socials) {
+      if (!socials) return;
+      Object.entries(socials).forEach(([key, url]) => {
+        if (!url) return;
+        document.querySelectorAll(`a[data-social="${key}"]`).forEach(anchor => {
+          anchor.href = url;
+          if (url.startsWith('http')) {
+            anchor.target = '_blank';
+            anchor.rel = 'noopener noreferrer';
+          }
+        });
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function loadSiteData() {
+      return fetch('./site-data.json', { cache: 'no-store' })
+        .then(response => {
+          if (!response.ok) throw new Error(`site-data.json load failed: ${response.status}`);
+          return response.json();
+        })
+        .catch(error => {
+          console.warn('Could not load site-data.json via fetch.', error);
+          return null;
+        });
+    }
+
+    function renderLinks(links) {
+      if (!Array.isArray(links) || links.length === 0) return '';
+      return links.map(link => {
+        const label = escapeHtml(link.label || 'Link');
+        const url = escapeHtml(link.url || '#');
+        const externalAttrs = url.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return `<a href="${url}"${externalAttrs} class="text-xs sm:text-sm lg:text-base px-2 sm:px-3 lg:px-4 py-1 lg:py-2 rounded" style="background-color: #F2E6D6; color: #666074;">${label}</a>`;
+      }).join(' ');
+    }
+
+    function renderBibtex(bibtex) {
+      if (!bibtex || typeof bibtex !== 'string') return '';
+      return `<details class="bibtex-dropdown">
+        <summary class="text-xs sm:text-sm lg:text-base px-2 sm:px-3 lg:px-4 py-1 lg:py-2 rounded cursor-pointer list-none" style="background-color: #F2E6D6; color: #666074;">BibTeX</summary>
+        <div class="bibtex-panel">
+          <button type="button" class="bibtex-close" aria-label="Close BibTeX" title="Close">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+          </button>
+          <button type="button" class="bibtex-copy" aria-label="Copy BibTeX" title="Copy BibTeX">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"></rect>
+              <rect x="4" y="4" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"></rect>
+            </svg>
+          </button>
+          <span class="bibtex-copy-feedback" aria-live="polite">Copied!</span>
+          <pre class="text-xs sm:text-sm p-3 rounded overflow-x-auto" style="color: #444; padding-right: 2.4rem; padding-top: 2.4rem; padding-bottom: 2.4rem;">${escapeHtml(bibtex)}</pre>
+        </div>
+      </details>`;
+    }
+
+    function getBibtexText(item) {
+      if (typeof item?.bibtex === 'string' && item.bibtex.trim()) return item.bibtex;
+      if (Array.isArray(item?.bibtex)) return item.bibtex.join('\n');
+      return '';
+    }
+
+    function stripOuterBraces(value) {
+      let output = (value || '').trim();
+      while (output.startsWith('{') && output.endsWith('}')) {
+        output = output.slice(1, -1).trim();
+      }
+      return output;
+    }
+
+    function parseBibtexFields(bibtex) {
+      if (!bibtex || typeof bibtex !== 'string') return {};
+      const text = bibtex.replace(/\r\n/g, '\n');
+      const fields = {};
+      let i = text.indexOf('{');
+      if (i < 0) return fields;
+      i += 1;
+
+      while (i < text.length) {
+        while (i < text.length && /[\s,]/.test(text[i])) i += 1;
+        if (i >= text.length || text[i] === '}') break;
+
+        const keyStart = i;
+        while (i < text.length && /[A-Za-z0-9_-]/.test(text[i])) i += 1;
+        const key = text.slice(keyStart, i).toLowerCase();
+        if (!key) break;
+
+        while (i < text.length && /\s/.test(text[i])) i += 1;
+        if (text[i] !== '=') {
+          while (i < text.length && text[i] !== '\n' && text[i] !== ',') i += 1;
+          continue;
+        }
+        i += 1;
+        while (i < text.length && /\s/.test(text[i])) i += 1;
+
+        let value = '';
+        if (text[i] === '{') {
+          i += 1;
+          let depth = 1;
+          const start = i;
+          while (i < text.length && depth > 0) {
+            if (text[i] === '{') depth += 1;
+            else if (text[i] === '}') depth -= 1;
+            i += 1;
+          }
+          value = text.slice(start, i - 1);
+        } else if (text[i] === '"') {
+          i += 1;
+          const start = i;
+          while (i < text.length) {
+            if (text[i] === '"' && text[i - 1] !== '\\') break;
+            i += 1;
+          }
+          value = text.slice(start, i);
+          if (text[i] === '"') i += 1;
+        } else {
+          const start = i;
+          while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '}') i += 1;
+          value = text.slice(start, i);
+        }
+
+        fields[key] = stripOuterBraces(value).replace(/\s+/g, ' ').trim();
+        while (i < text.length && text[i] !== ',') {
+          if (text[i] === '}') break;
+          i += 1;
+        }
+        if (text[i] === ',') i += 1;
+      }
+
+      return fields;
+    }
+
+    function formatBibtexAuthors(authorField) {
+      if (!authorField) return '';
+      return authorField
+        .split(/\s+and\s+/i)
+        .map(part => part.trim())
+        .filter(Boolean)
+        .map(name => {
+          if (!name.includes(',')) return name;
+          const bits = name.split(',').map(v => v.trim()).filter(Boolean);
+          if (bits.length < 2) return name;
+          return `${bits.slice(1).join(' ')} ${bits[0]}`.trim();
+        })
+        .join(', ');
+    }
+
+    function derivePublicationFields(item, kind) {
+      const fields = parseBibtexFields(getBibtexText(item));
+      const title = item?.title || fields.title || 'Untitled';
+      const authors = item?.authors || formatBibtexAuthors(fields.author);
+      const year = fields.year || '';
+
+      let venue = item?.venue || '';
+      if (!venue && kind === 'journal') {
+        const source = fields.journal || fields.booktitle || '';
+        const vol = fields.volume ? `Vol. ${fields.volume}` : '';
+        const num = fields.number ? `No. ${fields.number}` : '';
+        const pages = fields.pages ? `pp. ${fields.pages}` : '';
+        venue = [source, vol, num, pages, year].filter(Boolean).join(', ');
+      }
+
+      let status = item?.status || '';
+      if (!status && kind === 'preprint') {
+        status = fields.note || (year ? `Preprint, ${year}` : 'Preprint');
+      }
+
+      return { title, authors, venue, status };
+    }
+
+    function setPreviewHeightForTarget(target) {
+      if (!target) return;
+      const isPublicationSection = target.id === 'pub-journal-content' || target.id === 'pub-preprints-content';
+      if (!isPublicationSection) {
+        target.style.removeProperty('--preview-max-height');
+        return;
+      }
+
+      const cards = target.querySelectorAll(':scope > article');
+      if (cards.length < 2) {
+        target.style.removeProperty('--preview-max-height');
+        return;
+      }
+
+      const h1 = cards[0].getBoundingClientRect().height;
+      const h2 = cards[1].getBoundingClientRect().height;
+      const gap = 20;
+      target.style.setProperty('--preview-max-height', `${Math.ceil(h1 + h2 + gap)}px`);
+    }
+
+    function applySiteData(data) {
+      if (!data) return;
+
+      if (data.theme) {
+        config = {
+          ...config,
+          primary_color: data.theme.primary_color ?? config.primary_color,
+          secondary_color: data.theme.secondary_color ?? config.secondary_color,
+          text_color: data.theme.text_color ?? config.text_color,
+          background_color: data.theme.background_color ?? config.background_color,
+          accent_color: data.theme.accent_color ?? config.accent_color
+        };
+      }
+
+      if (data.social_links) {
+        applySocialLinks(data.social_links);
+      }
+
+      if (data.profile) {
+        const p = data.profile;
+        config = {
+          ...config,
+          image: p.image ?? config.image,
+          name: p.name ?? config.name,
+          title: p.title ?? config.title,
+          university: p.university ?? config.university,
+          department: p.department ?? config.department,
+          office: p.office ?? config.office,
+          email: p.email ?? config.email,
+          research_interests: Array.isArray(p.research_interests) ? p.research_interests.join(', ') : (p.research_interests ?? config.research_interests),
+          bio: p.bio ?? config.bio
+        };
+
+        const research1 = document.getElementById('research-summary-1');
+        if (research1 && p.research_summary) research1.textContent = p.research_summary;
+      }
+
+      if (data.site) {
+        config = {
+          ...config,
+          footer_year: data.site.footer_year ?? config.footer_year
+        };
+      }
+
+      if (data.publications?.journal_articles) {
+        const journalContainer = document.getElementById('pub-journal-content');
+        if (journalContainer) {
+          journalContainer.innerHTML = data.publications.journal_articles.map(item => {
+            const derived = derivePublicationFields(item, 'journal');
+            return `
+            <article class="publication-item bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-7 border" style="border-color: #CDB8BF;">
+              <h4 class="font-serif text-base sm:text-lg lg:text-xl font-medium">${escapeHtml(derived.title)}</h4>
+              ${derived.authors ? `<p class="text-xs sm:text-sm lg:text-base mt-1" style="color: #666074;">${escapeHtml(derived.authors)}</p>` : ''}
+              ${derived.venue ? `<p class="text-xs sm:text-sm lg:text-base mt-2 font-medium" style="color: #7A2746;">${escapeHtml(derived.venue)}</p>` : ''}
+              <div class="flex gap-2 sm:gap-3 mt-3 lg:mt-4 flex-wrap">${renderLinks(item.links)}${renderBibtex(getBibtexText(item))}</div>
+            </article>
+          `;
+          }).join('');
+          if (journalContainer.classList.contains('content-partial')) setPreviewHeightForTarget(journalContainer);
+        }
+      }
+
+      if (data.publications?.preprints) {
+        const preprintContainer = document.getElementById('pub-preprints-content');
+        if (preprintContainer) {
+          preprintContainer.innerHTML = data.publications.preprints.map(item => {
+            const derived = derivePublicationFields(item, 'preprint');
+            return `
+            <article class="publication-item bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-7 border" style="border-color: #CDB8BF; border-left: 3px solid #7A2746;">
+              <h4 class="font-serif text-base sm:text-lg lg:text-xl font-medium mt-2 lg:mt-3">${escapeHtml(derived.title)}</h4>
+              ${derived.authors ? `<p class="text-xs sm:text-sm lg:text-base mt-1" style="color: #666074;">${escapeHtml(derived.authors)}</p>` : ''}
+              ${derived.status ? `<p class="text-xs sm:text-sm lg:text-base mt-2 font-medium" style="color: #7A2746;">${escapeHtml(derived.status)}</p>` : ''}
+              <div class="flex gap-2 sm:gap-3 mt-3 lg:mt-4 flex-wrap">${renderLinks(item.links)}${renderBibtex(getBibtexText(item))}</div>
+            </article>
+          `;
+          }).join('');
+          if (preprintContainer.classList.contains('content-partial')) setPreviewHeightForTarget(preprintContainer);
+        }
+      }
+
+      if (data.conferences?.presentations) {
+        const presentations = document.getElementById('conf-presentations-timeline');
+        if (presentations) {
+          presentations.innerHTML = data.conferences.presentations.map(item => `
+            <div class="timeline-item relative">
+              <span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: #7A2746;">${escapeHtml(item.date)}</span>
+              <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">${escapeHtml(item.title)}</h4>
+              <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">${escapeHtml(item.type)}</p>
+              ${item.talk ? `<p class="text-xs sm:text-sm lg:text-base mt-1 italic" style="color: #666074;">"${escapeHtml(item.talk)}"</p>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      if (data.conferences?.seminar_talks) {
+        const seminars = document.getElementById('conf-seminars-timeline');
+        if (seminars) {
+          seminars.innerHTML = data.conferences.seminar_talks.map(item => `
+            <div class="timeline-item relative">
+              <span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: #7A2746;">${escapeHtml(item.date)}</span>
+              <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">${escapeHtml(item.title)}</h4>
+              <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">${escapeHtml(item.location)}</p>
+            </div>
+          `).join('');
+        }
+      }
+
+      if (data.conferences?.organizational_roles) {
+        const roles = document.getElementById('conf-org-timeline');
+        if (roles) {
+          roles.innerHTML = data.conferences.organizational_roles.map(item => `
+            <div class="timeline-item relative">
+              <span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: #7A2746;">${escapeHtml(item.date)}</span>
+              <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">${escapeHtml(item.title)}</h4>
+              <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">${escapeHtml(item.location)}</p>
+              ${item.details ? `<p class="text-xs sm:text-sm lg:text-base mt-1" style="color: #666074;">${escapeHtml(item.details)}</p>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      if (data.cv?.education) {
+        const education = document.getElementById('cv-education-content');
+        if (education) {
+          education.innerHTML = data.cv.education.map((item, index, arr) => `
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 ${index < arr.length - 1 ? 'border-b pb-3 sm:pb-4 lg:pb-5' : ''}" style="border-color: #CDB8BF;">
+              <div class="flex-1">
+                <h4 class="font-medium text-sm sm:text-base lg:text-lg">${escapeHtml(item.degree)}</h4>
+                <p class="text-xs sm:text-sm lg:text-base" style="color: #666074;">${escapeHtml(item.institution)}</p>
+                ${item.gpa ? `<p class="text-xs lg:text-sm" style="color: #666074;">GPA: ${escapeHtml(item.gpa)}</p>` : ''}
+              </div>
+              <span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: #7A2746;">${escapeHtml(item.period)}</span>
+            </div>
+          `).join('');
+        }
+      }
+
+      if (data.cv?.awards) {
+        const awards = document.getElementById('cv-awards-content');
+        if (awards) {
+          awards.innerHTML = data.cv.awards.map((item, index, arr) => `
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 py-2 lg:py-3 ${index < arr.length - 1 ? 'border-b' : ''}" style="border-color: #F2E6D6;">
+              <div><span class="font-medium text-xs sm:text-sm lg:text-base">${escapeHtml(item.title)}</span> <span class="text-xs lg:text-sm ml-2" style="color: #666074;">${escapeHtml(item.organization)}</span></div>
+              <span class="text-xs sm:text-sm lg:text-base" style="color: #7A2746;">${escapeHtml(item.period)}</span>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    function initViewToggles() {
+      function setViewButtonLabel(button, state, animate = false) {
+        const label = state === 'expanded' ? 'Full' : state === 'hidden' ? 'Hidden' : 'Preview';
+        const icon = state === 'expanded' ? '&#9662;&#9662;&#9662;' : state === 'hidden' ? '&#9656;' : '&#9662;';
+        const iconClass = state === 'expanded' ? 'view-icon view-icon-tight' : 'view-icon';
+        button.innerHTML = `Change view: ${label} <span class="${iconClass}" aria-hidden="true">${icon}</span>`;
+        if (animate) {
+          button.classList.remove('is-changing');
+          void button.offsetWidth;
+          button.classList.add('is-changing');
+          setTimeout(() => button.classList.remove('is-changing'), 260);
+        }
+      }
+
+      function applyViewState(button, state, animate = false) {
+        const targetId = button.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        target.classList.remove('hidden', 'content-partial');
+        target.style.removeProperty('--preview-max-height');
+        if (state === 'partial') {
+          setPreviewHeightForTarget(target);
+          target.classList.add('content-partial');
+        }
+        if (state === 'hidden') target.classList.add('hidden');
+
+        button.setAttribute('data-state', state);
+        setViewButtonLabel(button, state, animate);
+      }
+
+      document.querySelectorAll('.view-cycle').forEach(button => {
+        applyViewState(button, button.getAttribute('data-state') || 'expanded', false);
+        button.addEventListener('click', () => {
+          const state = button.getAttribute('data-state') || 'expanded';
+          let nextState = 'expanded';
+          if (state === 'partial') nextState = 'expanded';
+          else if (state === 'expanded') nextState = 'hidden';
+          else if (state === 'hidden') nextState = 'partial';
+          applyViewState(button, nextState, true);
+        });
+      });
+    }
+
+    function initBibtexDropdowns() {
+      const syncPreviewBibtexState = () => {
+        document.querySelectorAll('.content-partial').forEach(section => {
+          const hasOpenBibtex = !!section.querySelector('.bibtex-dropdown[open]');
+          section.classList.toggle('bibtex-open', hasOpenBibtex);
+        });
+      };
+
+      const closeAllBibtex = () => {
+        document.querySelectorAll('.bibtex-dropdown[open]').forEach(el => {
+          el.removeAttribute('open');
+        });
+        document.querySelectorAll('.content-partial.bibtex-open').forEach(el => {
+          el.classList.remove('bibtex-open');
+        });
+      };
+
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('.bibtex-dropdown')) {
+          // Details toggles after click; defer state sync to next tick.
+          setTimeout(syncPreviewBibtexState, 0);
+          return;
+        }
+        closeAllBibtex();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeAllBibtex();
+          return;
+        }
+        setTimeout(syncPreviewBibtexState, 0);
+      });
+
+      document.addEventListener('click', async (event) => {
+        const closeBtn = event.target.closest('.bibtex-close');
+        if (closeBtn) {
+          const details = closeBtn.closest('.bibtex-dropdown');
+          if (details) details.removeAttribute('open');
+          syncPreviewBibtexState();
+          return;
+        }
+
+        const copyBtn = event.target.closest('.bibtex-copy');
+        if (!copyBtn) return;
+        const panel = copyBtn.closest('.bibtex-panel');
+        const pre = panel?.querySelector('pre');
+        const text = pre?.innerText || '';
+        if (!text) return;
+
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', '');
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand('copy');
+            document.body.removeChild(area);
+          }
+          copyBtn.classList.add('copied');
+          const feedback = panel?.querySelector('.bibtex-copy-feedback');
+          feedback?.classList.add('show');
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            feedback?.classList.remove('show');
+          }, 900);
+        } catch (err) {
+          console.warn('Copy failed', err);
+        }
+      });
+    }
+
+    async function onConfigChange(cfg) {
+      // Update header
+      document.getElementById('profile-name').textContent = cfg.name || defaultConfig.name;
+      document.getElementById('profile-title').textContent = cfg.title || defaultConfig.title;
+      const footerNameEl = document.getElementById('footer-name');
+      if (footerNameEl) footerNameEl.textContent = cfg.name || defaultConfig.name;
+      const footerYearEl = document.getElementById('footer-year');
+      if (footerYearEl) footerYearEl.textContent = String(cfg.footer_year || defaultConfig.footer_year);
+
+      // Update profile
+      const profileImageEl = document.getElementById('profile-image');
+      if (profileImageEl && (cfg.image || defaultConfig.image)) {
+        profileImageEl.src = cfg.image || defaultConfig.image;
+      }
+      const initialsEl = document.getElementById('avatar-initials');
+      if (initialsEl) {
+        initialsEl.textContent = getInitials(cfg.name || defaultConfig.name);
+      }
+      document.getElementById('contact-department').textContent = cfg.department || defaultConfig.department;
+      const officeEl = document.getElementById('contact-office');
+      if (officeEl) officeEl.textContent = cfg.office || defaultConfig.office;
+      
+      const emailEl = document.getElementById('contact-email');
+      const email = cfg.email || defaultConfig.email;
+      emailEl.textContent = email;
+      emailEl.href = `mailto:${email}`;
+
+      // Update bio
+      document.getElementById('about-bio').textContent = cfg.bio || defaultConfig.bio;
+
+      // Update research interests
+      const interestsContainer = document.getElementById('research-interests-tags');
+      const interests = (cfg.research_interests || defaultConfig.research_interests).split(',').map(i => i.trim()).filter(i => i);
+      interestsContainer.innerHTML = interests.map(interest => 
+        `<span class="px-3 sm:px-4 lg:px-4 py-2 lg:py-2.5 rounded-full text-xs sm:text-xs lg:text-sm font-medium cursor-default transition-colors" style="background-color: #F2E6D6; color: #666074;">${interest}</span>`
+      ).join('');
+
+      // Apply font
+      const customFont = cfg.font_family || defaultConfig.font_family;
+      document.querySelectorAll('.font-serif').forEach(el => {
+        el.style.fontFamily = `${customFont}, Georgia, serif`;
+      });
+
+      // Apply font size
+      const baseSize = cfg.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+
+      // Apply colors
+      applyThemeStyles(cfg);
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => { cfg.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => cfg.primary_color || defaultConfig.primary_color,
+            set: (value) => { cfg.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => { cfg.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => { cfg.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => { cfg.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => { cfg.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => { cfg.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['name', cfg.name || defaultConfig.name],
+        ['title', cfg.title || defaultConfig.title],
+        ['university', cfg.university || defaultConfig.university],
+        ['department', cfg.department || defaultConfig.department],
+        ['email', cfg.email || defaultConfig.email],
+        ['research_interests', cfg.research_interests || defaultConfig.research_interests],
+        ['bio', cfg.bio || defaultConfig.bio]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+      config = window.elementSdk.config || config;
+    }
+    
+    async function initializePage() {
+      initViewToggles();
+      initBibtexDropdowns();
+      const siteData = await loadSiteData();
+      applySiteData(siteData);
+      onConfigChange(config);
+      refreshPreviewHeightsForVisiblePage();
+      window.addEventListener('resize', refreshPreviewHeightsForVisiblePage);
+    }
+
+    initializePage();
+  </script>
+ </body>
+</html>
+
+
+
