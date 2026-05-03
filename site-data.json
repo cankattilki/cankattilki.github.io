@@ -64,7 +64,7 @@
     ],
     "preprints": [
       {
-        "title": "From Interpolation to $\mathcal{H}_2$ Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems",
+        "title": "From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems",
         "authors": "Cankat Tilki and Tobias Breiten and Serkan Gugercin",
         "status": "Submitted to ESAIM: COCV",
         "bibtex": [
