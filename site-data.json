@@ -64,14 +64,25 @@
     ],
     "preprints": [
       {
-        "title": "",
-        "authors": "",
-        "status": "",
-        "bibtex": [],
+        "title": "From Interpolation to $\mathcal{H}_2$ Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems",
+        "authors": "Cankat Tilki and Tobias Breiten and Serkan Gugercin",
+        "status": "Submitted to ESAIM: COCV",
+        "bibtex": [
+          "@article{tilki2026interpolationmathcalh2optimalitymodel,",
+          "  title={From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems},", 
+          "  author={Cankat Tilki and Tobias Breiten and Serkan Gugercin},",
+          "  year={2026}," ,
+          "  eprint={2604.12862},",
+          "}"
+        ],
         "links": [
           {
-            "label": "",
-            "url": ""
+            "label": "PDF",
+            "url": "https://arxiv.org/pdf/2604.12862"
+          },
+          {
+            "label": "arXiv",
+            "url": "https://arxiv.org/abs/2604.12862"
           }
         ]
       }
