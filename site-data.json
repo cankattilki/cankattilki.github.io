@@ -64,14 +64,37 @@
     ],
     "preprints": [
       {
+        "title": "Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework",
+        "authors": "Cankat Tilki and Serkan Gugercin",
+        "status": "Preprint, 2026",
+        "bibtex": [
+          "@article{wbobsKoopman,",
+          "  title={Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework},",
+          "  author={Cankat Tilki and Serkan Gugercin},",
+          "  year={2026},",
+          "  eprint={2605.14224},",
+          "}"
+        ],
+        "links": [
+          {
+            "label": "PDF",
+            "url": "https://arxiv.org/pdf/2605.14224"
+          },
+          {
+            "label": "arXiv",
+            "url": "https://arxiv.org/abs/2605.14224"
+          }
+        ]
+      },
+      {
         "title": "From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems",
         "authors": "Cankat Tilki and Tobias Breiten and Serkan Gugercin",
         "status": "Submitted to ESAIM: COCV",
         "bibtex": [
           "@article{tilki2026interpolationmathcalh2optimalitymodel,",
-          "  title={From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems},", 
+          "  title={From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems},",
           "  author={Cankat Tilki and Tobias Breiten and Serkan Gugercin},",
-          "  year={2026}," ,
+          "  year={2026},",
           "  eprint={2604.12862},",
           "}"
         ],
@@ -85,28 +108,6 @@
             "url": "https://arxiv.org/abs/2604.12862"
           }
         ]
-      },
-      {
-        "title": "Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework",
-        "authors": "Cankat Tilki and Serkan Gugercin",
-        "status": "",
-        "bibtex": [
-          "@article{wbobsKoopman,",
-          "  title={Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework},", 
-          "  author={Cankat Tilki and Serkan Gugercin},",
-          "  year={2026}," ,
-          "  eprint={2605.1422},",
-          "}"
-        ],
-        "links": [
-          {
-            "label": "PDF",
-            "url": "https://arxiv.org/pdf/2605.14224v1"
-          },
-          {
-            "label": "arXiv",
-            "url": "https://arxiv.org/html/2605.14224v1"
-          }
       }
     ]
   },
@@ -139,14 +140,14 @@
     ],
     "seminar_talks": [
       {
-        "date": "Summer 2025",
-        "title": "Seminar on Control Theory Numerics and PDE's",
-        "location": "TU Berlin"
-      },
-      {
         "date": "Fall 2025",
         "title": "Applied Numerical Analysis Seminar",
         "location": "Virginia Tech"
+      },
+      {
+        "date": "Summer 2025",
+        "title": "Seminar on Control Theory Numerics and PDE's",
+        "location": "TU Berlin"
       },
       {
         "date": "Spring 2025",
