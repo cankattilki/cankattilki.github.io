@@ -85,6 +85,28 @@
             "url": "https://arxiv.org/abs/2604.12862"
           }
         ]
+      },
+      {
+        "title": "Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework",
+        "authors": "Cankat Tilki and Serkan Gugercin",
+        "status": "",
+        "bibtex": [
+          "@article{wbobsKoopman,",
+          "  title={Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework},", 
+          "  author={Cankat Tilki and Serkan Gugercin},",
+          "  year={2026}," ,
+          "  eprint={2605.1422},",
+          "}"
+        ],
+        "links": [
+          {
+            "label": "PDF",
+            "url": "https://arxiv.org/pdf/2605.14224v1"
+          },
+          {
+            "label": "arXiv",
+            "url": "https://arxiv.org/html/2605.14224v1"
+          }
       }
     ]
   },
