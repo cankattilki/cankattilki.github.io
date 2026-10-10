@@ -493,7 +493,7 @@
      <div class="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12">
       <div class="max-w-7xl mx-auto">
        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold mb-1 sm:mb-2 lg:mb-3">Publications</h2>
-       <p class="mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg" style="color: var(--theme-accent);">Peer-reviewed articles and preprints</p>
+       <p class="mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg" style="color: var(--theme-accent);">Peer-reviewed articles, conference papers, and preprints</p>
        <div class="space-y-6 lg:space-y-8"><!-- Published Papers -->
         <section>
          <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
@@ -502,6 +502,14 @@
           </svg> Journal Articles
           <button type="button" class="view-cycle" data-target="pub-journal-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
          <div id="pub-journal-content" class="space-y-4 lg:space-y-5"></div>
+        </section><!-- Conference Papers -->
+        <section id="pub-conference-section" class="hidden mt-8 sm:mt-10 lg:mt-12">
+         <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
+          <svg class="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg> Conference Papers
+          <button type="button" class="view-cycle" data-target="pub-conference-content" data-state="partial">Change view: Preview <span class="view-icon" aria-hidden="true">&#9662;</span></button></h3>
+         <div id="pub-conference-content" class="space-y-4 lg:space-y-5"></div>
         </section><!-- Preprints -->
         <section class="mt-8 sm:mt-10 lg:mt-12">
          <h3 class="text-base sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2">
@@ -650,10 +658,22 @@
         <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: var(--theme-border);">
          <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" /></svg> Education</h3>
          <div id="cv-education-content" class="space-y-3 sm:space-y-4 lg:space-y-5"></div>
+        </section><!-- Research Visits -->
+        <section id="cv-visits-section" class="hidden bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: var(--theme-border);">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg> Research Visits</h3>
+         <div id="cv-visits-content" class="space-y-3 sm:space-y-4 lg:space-y-5"></div>
+        </section><!-- Teaching Experience -->
+        <section id="cv-teaching-section" class="hidden bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: var(--theme-border);">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg> Teaching Experience</h3>
+         <div id="cv-teaching-content" class="space-y-3 sm:space-y-4 lg:space-y-5"></div>
         </section><!-- Awards & Honors -->
         <section class="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: var(--theme-border);">
          <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14a5 5 0 100-10 5 5 0 000 10zM9 13.5L7 21l5-2 5 2-2-7.5" /></svg> Awards &amp; Honors</h3>
          <div id="cv-awards-content" class="space-y-2 sm:space-y-3 lg:space-y-4"></div>
+        </section><!-- Service & Academic Activities -->
+        <section id="cv-service-section" class="hidden bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border" style="border-color: var(--theme-border);">
+         <h3 class="font-serif text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-5 flex items-center gap-2"><svg class="cv-title-icon w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6V5a2 2 0 012-2h0a2 2 0 012 2v1m-8 3h12a1 1 0 011 1v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7a1 1 0 011-1z" /></svg> Service &amp; Academic Activities</h3>
+         <div id="cv-service-content" class="space-y-3 sm:space-y-4 lg:space-y-5"></div>
         </section><!-- Skills & Languages -->
         <!-- CV_SKILLS_DEDICATIONS_START
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
@@ -1022,7 +1042,7 @@
 
     function setPreviewHeightForTarget(target) {
       if (!target) return;
-      const isPublicationSection = target.id === 'pub-journal-content' || target.id === 'pub-preprints-content';
+      const isPublicationSection = target.id === 'pub-journal-content' || target.id === 'pub-conference-content' || target.id === 'pub-preprints-content';
       if (!isPublicationSection) {
         target.style.removeProperty('--preview-max-height');
         return;
@@ -1038,6 +1058,33 @@
       const h2 = cards[1].getBoundingClientRect().height;
       const gap = 20;
       target.style.setProperty('--preview-max-height', `${Math.ceil(h1 + h2 + gap)}px`);
+    }
+
+    function renderCvDetails(details) {
+      if (!Array.isArray(details) || details.length === 0) return '';
+      return `<ul class="custom-bullets mt-1 lg:mt-2 space-y-1">${details.map(detail => {
+        const text = escapeHtml(typeof detail === 'string' ? detail : detail?.text);
+        const url = typeof detail === 'string' ? '' : escapeHtml(detail?.url || '');
+        const body = url ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">${text}</a>` : text;
+        return `<li class="text-xs lg:text-sm" style="color: var(--theme-accent);">${body}</li>`;
+      }).join('')}</ul>`;
+    }
+
+    function renderCvEntries(sectionId, containerId, items) {
+      const section = document.getElementById(sectionId);
+      const container = document.getElementById(containerId);
+      if (!section || !container || !Array.isArray(items) || items.length === 0) return;
+      container.innerHTML = items.map((item, index, arr) => `
+        <div class="flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4 ${index < arr.length - 1 ? 'border-b pb-3 sm:pb-4 lg:pb-5' : ''}" style="border-color: var(--theme-border);">
+          <div class="flex-1">
+            <h4 class="font-medium text-sm sm:text-base lg:text-lg">${escapeHtml(item.title)}</h4>
+            ${item.subtitle ? `<p class="text-xs sm:text-sm lg:text-base" style="color: var(--theme-accent);">${escapeHtml(item.subtitle)}</p>` : ''}
+            ${renderCvDetails(item.details)}
+          </div>
+          <span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: var(--theme-secondary);">${escapeHtml(item.period)}</span>
+        </div>
+      `).join('');
+      section.classList.remove('hidden');
     }
 
     function applySiteData(data) {
@@ -1102,6 +1149,25 @@
         }
       }
 
+      if (data.publications?.conference_papers?.length) {
+        const conferenceContainer = document.getElementById('pub-conference-content');
+        if (conferenceContainer) {
+          conferenceContainer.innerHTML = data.publications.conference_papers.map(item => {
+            const derived = derivePublicationFields(item, 'journal');
+            return `
+            <article class="publication-item bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-7 border" style="border-color: var(--theme-border);">
+              <h4 class="font-serif text-base sm:text-lg lg:text-xl font-medium">${escapeHtml(derived.title)}</h4>
+              ${derived.authors ? `<p class="text-xs sm:text-sm lg:text-base mt-1" style="color: var(--theme-accent);">${escapeHtml(derived.authors)}</p>` : ''}
+              ${derived.venue ? `<p class="text-xs sm:text-sm lg:text-base mt-2 font-medium" style="color: var(--theme-secondary);">${escapeHtml(derived.venue)}</p>` : ''}
+              <div class="flex gap-2 sm:gap-3 mt-3 lg:mt-4 flex-wrap">${renderLinks(item.links)}${renderBibtex(getBibtexText(item))}</div>
+            </article>
+          `;
+          }).join('');
+          document.getElementById('pub-conference-section')?.classList.remove('hidden');
+          if (conferenceContainer.classList.contains('content-partial')) setPreviewHeightForTarget(conferenceContainer);
+        }
+      }
+
       if (data.publications?.preprints) {
         const preprintContainer = document.getElementById('pub-preprints-content');
         if (preprintContainer) {
@@ -1126,7 +1192,7 @@
           presentations.innerHTML = data.conferences.presentations.map(item => `
             <div class="timeline-item relative">
               <span class="text-xs sm:text-sm lg:text-base font-semibold" style="color: var(--theme-secondary);">${escapeHtml(item.date)}</span>
-              <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">${escapeHtml(item.title)}</h4>
+              <h4 class="font-medium text-sm sm:text-base lg:text-lg mt-1">${item.url ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline">${escapeHtml(item.title)}</a>` : escapeHtml(item.title)}</h4>
               <p class="text-xs sm:text-sm lg:text-base" style="color: var(--theme-accent);">${escapeHtml(item.type)}</p>
               ${item.talk ? `<p class="text-xs sm:text-sm lg:text-base mt-1 italic" style="color: var(--theme-accent);">"${escapeHtml(item.talk)}"</p>` : ''}
             </div>
@@ -1170,12 +1236,17 @@
                 <h4 class="font-medium text-sm sm:text-base lg:text-lg">${escapeHtml(item.degree)}</h4>
                 <p class="text-xs sm:text-sm lg:text-base" style="color: var(--theme-accent);">${escapeHtml(item.institution)}</p>
                 ${item.gpa ? `<p class="text-xs lg:text-sm" style="color: var(--theme-accent);">GPA: ${escapeHtml(item.gpa)}</p>` : ''}
+                ${renderCvDetails(item.details)}
               </div>
               <span class="text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap" style="color: var(--theme-secondary);">${escapeHtml(item.period)}</span>
             </div>
           `).join('');
         }
       }
+
+      renderCvEntries('cv-visits-section', 'cv-visits-content', data.cv?.research_visits);
+      renderCvEntries('cv-teaching-section', 'cv-teaching-content', data.cv?.teaching);
+      renderCvEntries('cv-service-section', 'cv-service-content', data.cv?.service);
 
       if (data.cv?.awards) {
         const awards = document.getElementById('cv-awards-content');

@@ -14,17 +14,19 @@
   "profile": {
     "image": "./Cankat1c.jpeg",
     "name": "Cankat Tilki",
-    "title": "PhD Student in Mathematics",
+    "title": "PhD Candidate in Mathematics",
     "university": "Virginia Tech",
     "department": "Department of Mathematics, Virginia Tech",
     "email": "cankat@vt.edu",
     "office": "Data & Decision Sciences 330",
     "research_interests": [
+      "Numerical Analysis",
       "Model Reduction",
-      "Data Driven Modeling"
+      "Koopman Theory",
+      "Data-Driven Modeling"
     ],
-    "bio": "I am Cankat Tilki, a PhD student in the Department of Mathematics at Virginia Tech. I work with Dr. Serkan Gugercin on data-driven modeling of dynamical systems. Outside research, I enjoy practicing aikido and traveling.",
-    "research_summary": "My research focuses on data-driven modeling and model reduction for dynamical systems. I am particularly interested in EDMD from a Koopman-operator perspective, with the goal of constructing lower-dimensional representations that capture the essential behavior of complex systems. My current work explores both theoretical and computational aspects of these approaches, with an emphasis on methods that are reliable, interpretable, and broadly applicable."
+    "bio": "I am Cankat Tilki, a PhD candidate in the Department of Mathematics at Virginia Tech. I work with Dr. Serkan Güğercin on data-driven modeling of dynamical systems. Outside research, I enjoy practicing aikido and traveling.",
+    "research_summary": "My research develops data-driven modeling and model reduction methods for complex dynamical systems. I work at the intersection of numerical analysis, Koopman operator theory, and Dynamic Mode Decomposition, with emphasis on wavelet-based observables and infinite-dimensional linear control systems."
   },
   "site": {
     "footer_year": 2026
@@ -62,11 +64,34 @@
         ]
       }
     ],
+    "conference_papers": [
+      {
+        "title": "Augmenting Code Review Experience Through Visualization",
+        "authors": "Faruk Balcı, Dilruba Sultan Haliloğlu, Onur Şahin, Cankat Tilki, Mehmet Ata Yurtsever, and Eray Tüzün",
+        "venue": "IEEE Working Conference on Software Visualization (VISSOFT), pp. 110-114, 2021",
+        "bibtex": [
+          "@inproceedings{balci2021augmenting,",
+          "  title={Augmenting Code Review Experience Through Visualization},",
+          "  author={Balc{\\i}, Faruk and Halilo{\\u{g}}lu, Dilruba Sultan and {\\c{S}}ahin, Onur and Tilki, Cankat and Yurtsever, Mehmet Ata and T{\\\"u}z{\\\"u}n, Eray},",
+          "  booktitle={2021 Working Conference on Software Visualization (VISSOFT)},",
+          "  pages={110--114},",
+          "  year={2021},",
+          "  organization={IEEE}",
+          "}"
+        ],
+        "links": [
+          {
+            "label": "IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9604852"
+          }
+        ]
+      }
+    ],
     "preprints": [
       {
         "title": "Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework",
-        "authors": "Cankat Tilki and Serkan Gugercin",
-        "status": "Preprint, 2026",
+        "authors": "Cankat Tilki and Serkan Güğercin",
+        "status": "Submitted to SIAM Journal on Applied Dynamical Systems",
         "bibtex": [
           "@article{wbobsKoopman,",
           "  title={Wavelet-Based Observables for Koopman Analysis: An Extended Dynamic Mode Decomposition Framework},",
@@ -88,7 +113,7 @@
       },
       {
         "title": "From Interpolation to H2 Optimality: Model Reduction for Infinite-Dimensional Linear Control Systems",
-        "authors": "Cankat Tilki and Tobias Breiten and Serkan Gugercin",
+        "authors": "Cankat Tilki, Tobias Breiten, and Serkan Güğercin",
         "status": "Submitted to ESAIM: COCV",
         "bibtex": [
           "@article{tilki2026interpolationmathcalh2optimalitymodel,",
@@ -114,31 +139,52 @@
   "conferences": {
     "presentations": [
       {
-        "date": "March 2025",
-        "title": "SIAM Conference on Computational Science and Engineering",
+        "date": "May 2026",
+        "title": "International Linear Algebra Society Conference (ILAS 2026)",
         "type": "Oral presentation",
-        "talk": "Koopman Theory and Wavelets: A Framework for Wavelet-based Dynamic Mode Decomposition"
+        "talk": "Wavelet-Based Observables for Koopman Analysis",
+        "url": "https://ilas2026.github.io/"
+      },
+      {
+        "date": "March 2025",
+        "title": "SIAM Conference on Computational Science and Engineering (CSE25)",
+        "type": "Oral presentation",
+        "talk": "Koopman Theory and Wavelets: A Framework for Wavelet-based Dynamic Mode Decomposition",
+        "url": "https://www.siam.org/conferences-events/past-event-archive/cse25/"
       },
       {
         "date": "September 2024",
-        "title": "Model Reduction and Surrogate Modeling",
+        "title": "Model Reduction and Surrogate Modeling (MoRe 2024)",
         "type": "Poster presentation",
-        "talk": "Wavelet-based DMD in the Context of Extended DMD and Koopman Theory"
+        "talk": "Wavelet-based DMD in the Context of Extended DMD and Koopman Theory",
+        "url": "https://more2024.sciencesconf.org/"
       },
       {
         "date": "May 2023",
-        "title": "Nonlinear Model Reduction for Control Conference",
+        "title": "Nonlinear Model Reduction for Control Conference (NLRMC 2023)",
         "type": "Oral presentation",
-        "talk": "Wavelet-based DMD in the Context of Extended DMD"
+        "talk": "Wavelet-based DMD in the Context of Extended DMD",
+        "url": "https://personal.math.vt.edu/borggajt/nlromc/index.html"
       },
       {
         "date": "September 2021",
-        "title": "Working Conference on Software Visualization",
+        "title": "IEEE Working Conference on Software Visualization (VISSOFT 2021)",
         "type": "Oral presentation",
-        "talk": "Augmenting Code Review Experience Through Visualization"
+        "talk": "Augmenting Code Review Experience Through Visualization",
+        "url": "https://vissoft.info/2021/"
       }
     ],
     "seminar_talks": [
+      {
+        "date": "Summer 2026",
+        "title": "Model Reduction for Infinite-Dimensional Linear Control Systems",
+        "location": "TU Berlin"
+      },
+      {
+        "date": "Spring 2026",
+        "title": "Applied Numerical Analysis Seminar",
+        "location": "Virginia Tech"
+      },
       {
         "date": "Fall 2025",
         "title": "Applied Numerical Analysis Seminar",
@@ -146,7 +192,7 @@
       },
       {
         "date": "Summer 2025",
-        "title": "Seminar on Control Theory Numerics and PDE's",
+        "title": "Seminar on Control Theory Numerics and PDEs",
         "location": "TU Berlin"
       },
       {
@@ -168,7 +214,7 @@
         "details": "Co-organizers: Michael S. Ackermann (Virginia Tech), Sam Bender (Virginia Tech), Jordan Jackson (Virginia Tech), Reetish Padhi (Virginia Tech), Sean Reiter (NYU Courant)"
       },
       {
-        "date": "August 2025",
+        "date": "August 2025 - Spring 2026",
         "title": "Treasurer of the SIAM Student Chapter at Virginia Tech",
         "location": "Virginia Tech",
         "details": "President: Sam K. Bender, Vice President: Michael S. Ackermann"
@@ -181,52 +227,133 @@
         "degree": "PhD in Mathematics",
         "institution": "Virginia Tech, Blacksburg, VA",
         "gpa": "3.92",
-        "period": "Aug 2024 - Expected May 2028"
+        "period": "Aug 2024 - Expected May 2027",
+        "details": [
+          "Advisor: Serkan Güğercin",
+          "Research focus: Numerical analysis, model reduction, Koopman theory, and data-driven modeling"
+        ]
       },
       {
         "degree": "MS in Mathematics",
         "institution": "Virginia Tech, Blacksburg, VA",
         "gpa": "3.92",
-        "period": "Aug 2022 - Jun 2024"
+        "period": "Aug 2022 - Jun 2024",
+        "details": [
+          {
+            "text": "Thesis: Wavelet DMD in the Context of Koopman Theory",
+            "url": "https://hdl.handle.net/10919/120888"
+          }
+        ]
       },
       {
-        "degree": "Bachelor of Science in Mathematics",
+        "degree": "BS in Mathematics",
         "institution": "Ihsan Dogramaci Bilkent University, Ankara, Turkey",
         "gpa": "3.64",
         "period": "Sep 2018 - May 2022"
       },
       {
-        "degree": "Bachelor of Science in Computer Engineering",
+        "degree": "BS in Computer Engineering",
         "institution": "Ihsan Dogramaci Bilkent University, Ankara, Turkey",
         "gpa": "3.61",
         "period": "Sep 2017 - May 2022"
       }
     ],
+    "research_visits": [
+      {
+        "title": "Research Visitor",
+        "subtitle": "TU Berlin, Berlin, Germany",
+        "period": "Summer 2026",
+        "details": [
+          "One-month research visit with Tobias Breiten on numerical methods for control and model reduction.",
+          "Continued work connecting interpolatory model reduction with Koopman lifting."
+        ]
+      },
+      {
+        "title": "Research Visitor",
+        "subtitle": "TU Berlin, Berlin, Germany",
+        "period": "Summer 2025",
+        "details": [
+          "Six-week research visit with Tobias Breiten on model reduction for infinite-dimensional linear control systems.",
+          "Worked on the interpolatory H2 optimality paper and completed the main manuscript that year."
+        ]
+      }
+    ],
+    "teaching": [
+      {
+        "title": "Primary Instructor, Calculus I",
+        "subtitle": "Virginia Tech, Blacksburg, VA",
+        "period": "Aug 2026 - Present",
+        "details": [
+          "Lead lectures, assessments, office hours, and student support."
+        ]
+      },
+      {
+        "title": "Calculus I Teaching and Observation",
+        "subtitle": "Virginia Tech, Blacksburg, VA",
+        "period": "Spring 2023; Fall 2023"
+      },
+      {
+        "title": "Teaching Assistant, Department of Mathematics",
+        "subtitle": "Virginia Tech, Blacksburg, VA",
+        "period": "Aug 2022 - Jan 2023"
+      }
+    ],
     "awards": [
       {
         "title": "Virginia Tech Graduate Merit Fellowship",
-        "organization": "Virginia Tech Mathematics Department",
+        "organization": "Merit-based fellowship awarded by the Virginia Tech Mathematics Department",
         "period": "Aug 2022 - Jun 2024"
       },
       {
-        "title": "High Honor Standing for Computer Engineering",
-        "organization": "Bilkent University",
-        "period": "May 2022"
-      },
-      {
-        "title": "High Honor Standing for Mathematics",
-        "organization": "Bilkent University",
-        "period": "May 2022"
-      },
-      {
         "title": "TUBITAK 2205 Scholarship",
-        "organization": "Governmental merit-based grant",
+        "organization": "STEM double-major scholarship for a top-1000 national university entrance exam rank",
         "period": "Sep 2018 - May 2022"
       },
       {
         "title": "Bilkent University Comprehensive Scholarship",
-        "organization": "Merit-based grant",
+        "organization": "Merit-based grant for ranking within the top 1000 in the University Entrance Exam",
         "period": "Sep 2017 - May 2022"
+      },
+      {
+        "title": "High Honor Standing, Mathematics",
+        "organization": "Awarded for an overall GPA above 3.5 at Bilkent University",
+        "period": "May 2022"
+      },
+      {
+        "title": "High Honor Standing, Computer Engineering",
+        "organization": "Awarded for an overall GPA above 3.5 at Bilkent University",
+        "period": "May 2022"
+      }
+    ],
+    "service": [
+      {
+        "title": "Local Organizing Committee, Young Mathematics in Model Order Reduction 2026",
+        "subtitle": "Blacksburg, VA",
+        "period": "Sep 2025"
+      },
+      {
+        "title": "Treasurer, SIAM Student Chapter at Virginia Tech",
+        "subtitle": "Virginia Tech, Blacksburg, VA",
+        "period": "Aug 2025 - Spring 2026"
+      },
+      {
+        "title": "Organizer, Functional Analysis Reading Group",
+        "subtitle": "Virginia Tech, Blacksburg, VA",
+        "period": "Spring 2023 - Fall 2023",
+        "details": [
+          "Topics: spectral analysis and Koopman theory."
+        ]
+      },
+      {
+        "title": "Member, Numerical Analysis Reading Group",
+        "subtitle": "Virginia Tech",
+        "period": "Fall 2022 - Spring 2023",
+        "details": [
+          {
+            "text": "Topics: tensors, randomized numerical linear algebra, and optimization.",
+            "url": "https://sites.google.com/vt.edu/reading-group/home?authuser=0"
+          }
+        ]
       }
     ]
   }

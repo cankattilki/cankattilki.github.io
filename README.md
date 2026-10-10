@@ -34,11 +34,13 @@ If you are not familiar with JSON, use this quick guide:
 - `social_links`: ORCID, Scholar, GitHub links
 - `profile`: name, title, image, email, office, bio, research interests
 - `publications.journal_articles`
+- `publications.conference_papers` (optional, same template as journal articles)
 - `publications.preprints`
 - `conferences.presentations`
 - `conferences.seminar_talks`
 - `conferences.organizational_roles`
 - `cv.education`
+- `cv.research_visits`, `cv.teaching`, `cv.service` (optional, hidden when missing)
 - `cv.awards`
 - `site.footer_year`
 
@@ -121,9 +123,12 @@ The page can auto-read common fields (title, authors, venue/status, year).
   "date": "",
   "title": "",
   "type": "",
-  "talk": ""
+  "talk": "",
+  "url": ""
 }
 ```
+
+`url` is optional and links the conference name to its website.
 
 ### Seminar Talk
 
@@ -153,7 +158,21 @@ The page can auto-read common fields (title, authors, venue/status, year).
   "degree": "",
   "institution": "",
   "gpa": "",
-  "period": ""
+  "period": "",
+  "details": []
+}
+```
+
+`details` is an optional list of bullet points. Each one is either plain text or `{ "text": "", "url": "" }` for a linked bullet.
+
+### CV Research Visit / Teaching / Service
+
+```json
+{
+  "title": "",
+  "subtitle": "",
+  "period": "",
+  "details": []
 }
 ```
 
